@@ -6,12 +6,12 @@ import {
 
 
 
-const router = express.Router();
+const authRouter = express.Router();
 const path = "/auth";
 
 //........user login and signup ...........//
-router.post(`${path}/signUp`, signUp);
-router.post(`${path}/signin`, signIn);
+authRouter.post(`${path}/signUp`, signUp);
+authRouter.post(`${path}/signin`, signIn);
 
 
-export default router;
+export default authRouter;

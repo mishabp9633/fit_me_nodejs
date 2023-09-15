@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from "cors";
+import authRouter from './routes/auth.route.js';
 
 const app = express()
 
@@ -9,12 +10,13 @@ app.use(express.json({limit:"50mb"}))
 app.use(express.urlencoded({limit:"50mb",extended:true}))
 
 app.use(
-  userRouter,
+  // userRouter,
   authRouter,
   // productRouter
   )
  async function dbconnection(){
     try {
+      mongoose.set('strictQuery', false);
       await mongoose.connect("mongodb://127.0.0.1:27017/fit_me")
       console.log("monogo db connecetd");
       
