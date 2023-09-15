@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import cors from "cors";
 import authRouter from './routes/auth.route.js';
 import productRouter from './routes/product.route.js';
-
+import path from 'path';
 const app = express()
 
 app.use(cors({ origin: true, credentials: true }));
