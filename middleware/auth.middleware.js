@@ -3,7 +3,6 @@ import User from "../model/user.model.js";
 
 export const authorizeRoles = (roles) =>
   async (req, res, next) => {
-    console.log('roles: ',roles)
 
     const token =
       (req.header("Authorization") &&
@@ -17,7 +16,7 @@ export const authorizeRoles = (roles) =>
     }
 
     try {
-      const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+      const decoded = jwt.verify(token, 'secret_key');
       const user = await User.findOne({ _id: decoded._id });
 
       if (!user) {
@@ -33,6 +32,7 @@ export const authorizeRoles = (roles) =>
       }
 
       req.body.user = user;
+  
       next();
     } catch (error) {
       console.log(error);

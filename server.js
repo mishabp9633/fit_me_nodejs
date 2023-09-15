@@ -4,6 +4,8 @@ import cors from "cors";
 import authRouter from './routes/auth.route.js';
 import productRouter from './routes/product.route.js';
 import path from 'path';
+import userRouter from './routes/user.rout.js';
+import orderRouter from './routes/tailor.order.route.js';
 const app = express()
 
 app.use(cors({ origin: true, credentials: true }));
@@ -12,10 +14,10 @@ app.use(express.urlencoded({limit:"50mb",extended:true}))
 app.use('/public/photos', express.static(path.join('public/photos')));
 
 app.use(
-  // userRouter,
+  userRouter,
   authRouter,
   productRouter,
-  // orderRouter
+  orderRouter
   )
  async function dbconnection(){
     try {

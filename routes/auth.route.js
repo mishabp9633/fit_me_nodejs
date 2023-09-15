@@ -18,4 +18,6 @@ authRouter.post(`${path}/signin`, signIn);
 //..........tailor create admin.........//
 authRouter.post(`${path}/signup/tailor`,authorizeRoles(['admin']), signUpTailor);
 
+
+
 export default authRouter;
