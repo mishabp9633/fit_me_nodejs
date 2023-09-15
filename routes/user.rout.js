@@ -8,10 +8,10 @@ const userRouter = express.Router();
 const path = "/user";
 
 //..........tailor delete admin.........//
-userRouter.post(`${path}/delete/tailor/:id`,authorizeRoles(['admin']), deleteTailor);
+userRouter.delete(`${path}/delete/tailor/:id`,authorizeRoles(['admin']), deleteTailor);
 
 //..........user size add.........//
-userRouter.post(`${path}/user/size/add`,authorizeRoles(['user']), userSizeAdd);
+userRouter.post(`${path}/size/add`,authorizeRoles(['user']), userSizeAdd);
 
 
 

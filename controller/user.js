@@ -19,13 +19,19 @@ export async function deleteTailor(req, res, next) {
 
   //...........user size add...............// 
 export async function userSizeAdd(req, res, next) {
-    const userId = req.body.User
+    const sizeData = req.body
+    const userId = req.body.user._id
     try {
-      const tailorDelete = await  User.findOne({_id:userId})
-      if(!tailorDelete){
-        res.status(404).send({message:'tailor not found'});
+      const user = await  User.findOne({_id:userId})
+      if(!user){
+        res.status(404).send({message:'user not found'});
       }
-      res.status(200).send({message:'deleted successfully'});
+
+      user.height = sizeData.height
+      user.weight = sizeData.weight
+      await user.save()
+
+      res.status(200).send({user});
       }
     catch (err) {
       next(err);
