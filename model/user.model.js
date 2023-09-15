@@ -3,9 +3,12 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     name: String,
     password:String,
-    userName:String,
-    phone:Number,
-    role:String,
+    username:String,
+    phone:String,
+    role:{
+      type:String,
+      default:"user"
+    },
     height:Number,
     weight:Number,
     chest:Number,

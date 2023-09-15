@@ -16,32 +16,49 @@ export async function signIn(req, res, next) {
             { _id: user._id },
             'secret_key'
           ); 
-          let tokenRole={
+          let result={
            role:user.role,
            token
           }
-      res.status(200).send(tokenRole);
+      res.status(200).send({result});
       }
     catch (err) {
       next(err);
     } 
 } 
 
-//...........signup...............// 
+//...........signup user...............// 
 export async function signUp(req, res, next) {
   
     const userData = req.body
-
     try {
-        const user = await User.findOne({username:userdata.username})
-        if(user){
-         throw createError(400, `User already registerd with the username ${user.username}`)
-        }
-         const result = new User(userdata)
+        const user = await User.findOne({username: userData.username})
+        if(user) res.status(400).send({message:'User already registerd with the username'});
+
+         const result = new User(userData)
          await result.save()
-         return {result}
+         res.status(200).send({result});
     }
     catch (err) {
       next(err);
     } 
-} 
+}  
+
+//...........signup tailor...............// 
+export async function signUpTailor(req, res, next) {
+  
+  const userData = req.body
+  try {
+      const user = await User.findOne({username: userData.username})
+      if(user) res.status(400).send({message:'User already registerd with the username'});
+       const role = 'tailor'
+       userData.role = role
+       
+       const result = new User(userData)
+       await result.save()
+       res.status(200).send({result});
+  }
+  catch (err) {
+    next(err);
+  } 
+}   
