@@ -1,3 +1,4 @@
+import { HttpException } from "../exception/exception.js";
 import Order from "../model/tailor.order.model.js";
 
 //...........Order create...............// 
@@ -21,9 +22,7 @@ export async function deleteOrder(req, res, next) {
 
   try {
     const order = await  Order.findByIdAndDelete(orderId)
-    if(!order){
-      res.status(404).send({message:'order not found'});
-    }
+    if(!order) throw new HttpException(400, "order not found")
     res.status(200).send({message:'deleted successfully'});
     }
   catch (err) {
@@ -42,9 +41,7 @@ export async function getAllOrders(req, res, next) {
       .populate({
         path: 'product'
       })
-    if(!order){
-      res.status(404).send({message:'order not found'});
-    }
+    if(!order) throw new HttpException(400, "order not found")
     res.status(200).send(order);
     }
   catch (err) {

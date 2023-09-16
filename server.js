@@ -6,6 +6,7 @@ import productRouter from './routes/product.route.js';
 import path from 'path';
 import userRouter from './routes/user.rout.js';
 import orderRouter from './routes/tailor.order.route.js';
+import { errorHandling } from './middleware/error.middleware.js';
 const app = express()
 
 app.use(cors({ origin: true, credentials: true }));
@@ -33,6 +34,8 @@ app.use(
   }
 
 dbconnection()
+
+app.use(errorHandling)
 
 const port = 5000
 app.listen(port, ()=>{

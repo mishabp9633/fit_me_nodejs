@@ -1,3 +1,4 @@
+import { HttpException } from "../exception/exception.js";
 import User from "../model/user.model.js";
 
 //...........tailor delete admin...............// 
@@ -7,9 +8,7 @@ export async function deleteTailor(req, res, next) {
   
     try {
       const tailorDelete = await  User.findByIdAndDelete(tailorId)
-      if(!tailorDelete){
-      res.status(404).send({message:'tailor not found'});
-      }
+      if(!tailorDelete) throw new HttpException(400, "tailor not found")
       res.status(200).send({message:'deleted successfully'});
       }
     catch (err) {
@@ -23,9 +22,7 @@ export async function userSizeAdd(req, res, next) {
     const userId = req.body.user._id
     try {
       const user = await  User.findOne({_id:userId})
-      if(!user){
-        res.status(404).send({message:'user not found'});
-      }
+      if(!user) throw new HttpException(400, "user not found")
 
       user.height = sizeData.height
       user.weight = sizeData.weight
