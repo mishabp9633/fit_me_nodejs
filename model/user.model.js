@@ -15,8 +15,8 @@ const userSchema = new mongoose.Schema({
     height:Number,
     weight:Number,
     chest:Number,
-    shoulder:Number,
-    lenght:Number,
+    waist:Number,
+    inseam:Number,
     size:String
   });
   
