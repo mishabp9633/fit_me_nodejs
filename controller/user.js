@@ -1,3 +1,4 @@
+import { valueFind } from "../constent/constant.js";
 import { HttpException } from "../exception/exception.js";
 import User from "../model/user.model.js";
 
@@ -28,9 +29,13 @@ export async function userSizeAdd(req, res, next) {
       const Weight = sizeData.weight
 
       let sizeRecommendation = "";
-      let chest  
-      let waist 
-      let inseam 
+
+      let val = {
+          c:59,
+          w:66,
+          i:56
+      }
+  
 
   if (Height < 166) {
     if (Weight < 56) {
@@ -102,14 +107,13 @@ export async function userSizeAdd(req, res, next) {
   
   const result = {
     sizeRecommendation: sizeRecommendation,
-    waist: (Weight / 2) - 12,
-    chest: (Weight / 3) + 10,
-    inseam: (Height - 38)
   };
 
-      user.waist = result.waist + 60 
-      user.chest = result.chest + 62 
-      user.inseam = result.inseam - 60 
+  const value = valueFind(Height, Weight)
+
+      user.waist = value.waist + val.w
+      user.chest = value.chest + val.c 
+      user.inseam = value.inseam - val.i 
       user.size = result.sizeRecommendation
       user.height = sizeData.height
       user.weight = sizeData.weight
