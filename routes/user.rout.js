@@ -1,5 +1,5 @@
 import express from "express";
-import { deleteTailor, userSizeAdd } from "../controller/user.js";
+import { deleteTailor, getAllTailors, userSizeAdd } from "../controller/user.js";
 import { authorizeRoles } from "../middleware/auth.middleware.js";
 
 
@@ -13,6 +13,7 @@ userRouter.delete(`${path}/delete/tailor/:id`,authorizeRoles(['admin']), deleteT
 //..........user size add.........//
 userRouter.post(`${path}/size/add`,authorizeRoles(['user']), userSizeAdd);
 
-
+//........get all tailors...........//
+userRouter.get(`${path}/tailor/get`,authorizeRoles(['admin']), getAllTailors);
 
 export default userRouter;

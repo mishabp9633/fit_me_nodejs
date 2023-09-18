@@ -125,3 +125,16 @@ export async function userSizeAdd(req, res, next) {
       next(err);
     } 
   }
+
+  //...........tailor get all...............// 
+export async function getAllTailors(req, res, next) {
+  
+  try {
+    const user = await  User.find({role:'tailor'})
+    if(!user) throw new HttpException(400, "user not found")
+    res.status(200).send({user});
+    }
+  catch (err) {
+    next(err);
+  } 
+} 
