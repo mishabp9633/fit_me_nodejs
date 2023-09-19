@@ -37,7 +37,7 @@ dbconnection()
 
 app.use(errorHandling)
 
-const port = 6000
+const port = 5000
 app.listen(port, ()=>{
     console.log(`port at listen on port ${port}`)
 })  

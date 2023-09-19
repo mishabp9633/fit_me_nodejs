@@ -1,7 +1,12 @@
 import Product from "../model/product.model.js";
-import ip from 'ip'
-import User from "../model/user.model.js";
 import { HttpException } from "../exception/exception.js";
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+    cloud_name: 'dh5pflqzs',
+    api_key: '549382545581927',
+    api_secret: 'VEOMO5Xni1eCfQKSsVB4Jr4p4eQ'
+})
 
 //...........product create...............// 
 export async function createProduct(req, res, next) {
@@ -10,10 +15,12 @@ export async function createProduct(req, res, next) {
     const files = req.files
     try {
       let images = [];
-      for (const file of files.product) {        
-        let url =`http://${ip.address()}:5000/public/photos/product/${file.filename}`
+      for (const file of files) { 
+        const public_id = `product/${file.filename}`;       
+        const result = await cloudinary.uploader.upload(file.path, {public_id} );
         images.push({
-          url: url,
+          public_id: result.public_id,
+          url: result.secure_url,
         });
       }
       productData.images = images

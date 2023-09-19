@@ -28,7 +28,8 @@ const productSchema = new mongoose.Schema({
     price:Number,
     images:[
         {
-            url:String
+          public_id:String,
+          url:String
         }
     ]
   });

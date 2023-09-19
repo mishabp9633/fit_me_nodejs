@@ -14,6 +14,6 @@ userRouter.delete(`${path}/delete/tailor/:id`,authorizeRoles(['admin']), deleteT
 userRouter.post(`${path}/size/add`,authorizeRoles(['user']), userSizeAdd);
 
 //........get all tailors...........//
-userRouter.get(`${path}/tailor/get`,authorizeRoles(['admin']), getAllTailors);
+userRouter.get(`${path}/tailor/get`,authorizeRoles(['admin', 'admin']), getAllTailors);
 
 export default userRouter;

@@ -3,16 +3,16 @@ import {
     createProduct, deleteProduct, getAllProduct, getAllProductByUserSize, getSingleProduct
 } from "../controller/product.js";
 import { authorizeRoles } from "../middleware/auth.middleware.js";
-import { upload } from "../utils/multer.js";
+import multer from 'multer';
 
 
 const productRouter = express.Router();
 const path = "/product";
+const upload = multer({ storage : multer.diskStorage({})})
 
-const cpUpload = upload.fields([{ name: 'product', maxCount: 4 }])
 
 //........Create product...........//
-productRouter.post(`${path}/new`, cpUpload ,authorizeRoles(['admin']), createProduct);
+productRouter.post(`${path}/new`, upload.array('images') ,authorizeRoles(['admin']), createProduct);
 
 //........Delete product...........//
 productRouter.post(`${path}/delete/:id`,authorizeRoles(['admin']), deleteProduct);
