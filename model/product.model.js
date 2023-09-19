@@ -26,12 +26,12 @@ const productSchema = new mongoose.Schema({
         default: "",
       },
     price:Number,
-    images:[
+    image:
         {
           public_id:String,
           url:String
         }
-    ]
+  
   });
   
   const Product = mongoose.model("Product", productSchema);

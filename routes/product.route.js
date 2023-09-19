@@ -12,7 +12,7 @@ const upload = multer({ storage : multer.diskStorage({})})
 
 
 //........Create product...........//
-productRouter.post(`${path}/new`, upload.array('images') ,authorizeRoles(['admin']), createProduct);
+productRouter.post(`${path}/new`, upload.single('images') ,authorizeRoles(['admin']), createProduct);
 
 //........Delete product...........//
 productRouter.post(`${path}/delete/:id`,authorizeRoles(['admin']), deleteProduct);

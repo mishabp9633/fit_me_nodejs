@@ -12,19 +12,16 @@ cloudinary.config({
 export async function createProduct(req, res, next) {
   
     const productData = req.body
-    const files = req.files
+    const file = req.file
+    const image = {}
     try {
-      let images = [];
-      for (const file of files) { 
         const public_id = `product/${file.filename}`;       
-        const result = await cloudinary.uploader.upload(file.path, {public_id} );
-        images.push({
-          public_id: result.public_id,
-          url: result.secure_url,
-        });
-      }
-      productData.images = images
+        const cloud = await cloudinary.uploader.upload(file.path, { public_id } );
+        image.public_id = cloud.public_id,
+        image.url = cloud.secure_url
 
+        productData.image = image
+        
          const result = new Product(productData)
          await result.save()
          res.status(200).send({result});
@@ -32,7 +29,7 @@ export async function createProduct(req, res, next) {
     catch (err) {
       next(err);
     } 
-} 
+}
 
 //...........product delete...............// 
 export async function deleteProduct(req, res, next) {
