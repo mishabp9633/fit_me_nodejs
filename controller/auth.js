@@ -39,8 +39,8 @@ export async function signUp(req, res, next) {
          await result.save()
          res.status(200).send({result});
     }
-    catch (err) {
-      next(err);
+    catch (error) {
+      next(error);
     } 
 }  
 
