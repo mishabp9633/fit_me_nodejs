@@ -5,7 +5,7 @@ export const SIZE = {
     MEDIUM : 'Medium',
     LARGE : 'Large',
     EXTRALARGE : 'Extra Large',
-    EXTRALARGELARGE : 'Extra Large Large',
+    EXTRAEXTRALARGE : 'Extra Extra Large',
   }
 
 const productSchema = new mongoose.Schema({
@@ -19,7 +19,7 @@ const productSchema = new mongoose.Schema({
             SIZE.MEDIUM,
             SIZE.LARGE,
             SIZE.EXTRALARGE,
-            SIZE.EXTRALARGELARGE,
+            SIZE.EXTRAEXTRALARGE,
           ],
           message: 'Please select correct size'
         },
