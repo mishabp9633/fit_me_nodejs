@@ -23,7 +23,7 @@ app.use(
  async function dbconnection(){
     try {
       mongoose.set('strictQuery', false);
-      await mongoose.connect("mongodb://127.0.0.1:27017/fit_me")
+      await mongoose.connect("mongodb+srv://mishabp9633:98Zqm6FuQBKv1sCw@shobhagold.pjuqog5.mongodb.net/fit_me?retryWrites=true&w=majority")
       console.log("monogo db connecetd");
       
     } catch (error) {
