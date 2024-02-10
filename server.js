@@ -13,6 +13,9 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({limit:"50mb"}))
 app.use(express.urlencoded({limit:"50mb",extended:true}))
 app.use('/public/photos', express.static(path.join('public/photos')));
+app.use('/', (req, res) => {
+  res.send('Hello');
+});
 
 app.use(
   userRouter,
